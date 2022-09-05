@@ -4,28 +4,28 @@ extrn WriteFile		:PROC
 extrn ExitProcess	:PROC
 
 .data
-	Tong_chan		dq	0
-	Tong_le			dq	0
-	space			db  20h, 0
+	Tong_chan	dq	0
+	Tong_le		dq	0
+	space		db  20h, 0
 .data?
-	num_array		db	40 DUP (?)
-	num_output		db	40 DUP (?)
-	len				dq	?
-	nByte			dd	?
+	num_array	db	40 DUP (?)
+	num_output	db	40 DUP (?)
+	len		dq	?
+	nByte		dd	?
 
 .code
 main PROC
-	mov		rbp, rsp
-	sub		rsp, 28h
- 	xor		rbx, rbx
-	mov		rcx, -10
+	mov	rbp, rsp
+	sub	rsp, 28h
+ 	xor	rbx, rbx
+	mov	rcx, -10
 	call	GetStdHandle
 
-	mov		rcx, rax
-	mov		rdx, offset num_array
-	mov		r8, 30
-	mov		r9, offset nByte
-	mov		[rsp+20h], rbx
+	mov	rcx, rax
+	mov	rdx, offset num_array
+	mov	r8, 30
+	mov	r9, offset nByte
+	mov	[rsp+20h], rbx
 	call	ReadFile
 
 	mov		r12, offset num_array
