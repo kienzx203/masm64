@@ -4,17 +4,17 @@ extrn WriteFile		:PROC
 extrn ExitProcess	:PROC
 
 .data?
-    num_array	db	40 DUP (?)
+    	num_array	db	40 DUP (?)
 	num_output	db	40 DUP (?)
-	len			dq	?
-    nByte		dq	?
+	len		dq	?
+    	nByte		dq	?
 .data
     sSizeReq    db  'Nhap kich thuoc mang n: ', 0
     sArrReq     db  'Nhap n phan tu cua mang: ', 0
     sMinResult  db  'Min: ', 0
     sMaxResult  db  'Max: ', 0
-    max			dq	0
-	min			dq	1000000
+    max		dq	0
+    min		dq	1000000
 
 .code
 main proc
@@ -75,18 +75,18 @@ L1:
     jmp     l2
 
 L2:	
-	cmp		r14, min
-	jl		L5
-	jmp		L1
+	cmp	r14, min
+	jl	L5
+	jmp	L1
 	
 L5:
-	mov		min, r14
-	jmp		L1
+	mov	min, r14
+	jmp	L1
 
 L3: 
 
-	mov		max, r14
-	jmp		L2
+	mov	max, r14
+	jmp	L2
 
 L4:
     xor     r12, r12
@@ -134,37 +134,37 @@ L4:
 main endp
 ATOI PROC
 	push	rbp
-	mov		rbp, rsp
+	mov	rbp, rsp
 	push	rbx
-	mov		rbx, [rbp+16]
-	xor		rsi, rsi								
-	xor		rax, rax
-	mov		rcx, 10
+	mov	rbx, [rbp+16]
+	xor	rsi, rsi								
+	xor	rax, rax
+	mov	rcx, 10
 L1:
-	xor		rdx,rdx
-	mov		dl, byte ptr [rbx+rsi]				
-	cmp		dl, 0Dh								
-	jz		L2
+	xor	rdx,rdx
+	mov	dl, byte ptr [rbx+rsi]				
+	cmp	dl, 0Dh								
+	jz	L2
 	sub 	rdx, 30h							
-	add		rax, rdx							
-	mul		rcx									
-	inc		rsi									
-	jmp		L1
+	add	rax, rdx							
+	mul	rcx									
+	inc	rsi									
+	jmp	L1
 
 L2:
-	xor		rdx, rdx
-	div		rcx
-	pop		rbx
-	pop		rbp
-	ret		8
+	xor	rdx, rdx
+	div	rcx
+	pop	rbx
+	pop	rbp
+	ret	8
 ATOI ENDP
 
 REATOI PROC
 
     push    rbp
     mov     rbp, rsp
-	xor		rax, rax
-	xor		rbx, rbx
+    xor	    rax, rax
+    xor	    rbx, rbx
     mov     rax, [rbp + 24]						
     mov     rbx, [rbp + 16]						
     xor     rsi, rsi 
@@ -190,7 +190,7 @@ L2:
     jmp     L2
 
 L3:
-	mov		r8w, 0a0dh 
+    mov	    r8w, 0a0dh 
     mov     word ptr [rbx + rsi], r8w
     pop     rbp
     ret     16
