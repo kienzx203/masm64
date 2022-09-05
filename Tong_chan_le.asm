@@ -28,81 +28,81 @@ main PROC
 	mov	[rsp+20h], rbx
 	call	ReadFile
 
-	mov		r12, offset num_array
+	mov	r12, offset num_array
 	push	r12
 	call	ATOI
-	mov		len, rax
+	mov	len, rax
 
 L1:	
 
-	cmp		len, 0
-	jz		L4
-	xor		rbx, rbx
-	mov		rcx, -10
+	cmp	len, 0
+	jz	L4
+	xor	rbx, rbx
+	mov	rcx, -10
 	call	GetStdHandle
 
-	mov		rcx, rax
-	mov		rdx, offset num_array
-	mov		r8, 30
-	mov		r9, offset nByte
-	mov		[rsp+20h], rbx
+	mov	rcx, rax
+	mov	rdx, offset num_array
+	mov	r8, 30
+	mov	r9, offset nByte
+	mov	[rsp+20h], rbx
 	call	ReadFile
-	dec		len
-	mov		r12, offset num_array
+	dec	len
+	mov	r12, offset num_array
 	push	r12
 	call	ATOI
-	mov		rbx, 0
-	mov		rcx, 0
-	mov		rcx,rax
-	mov		rbx, 2
-	mov		rdx, 0
-	div		rbx
-	cmp		rdx, 0
-	jz		L3
-	jmp		L2
+	mov	rbx, 0
+	mov	rcx, 0
+	mov	rcx,rax
+	mov	rbx, 2
+	mov	rdx, 0
+	div	rbx
+	cmp	rdx, 0
+	jz	L3
+	jmp	L2
 
 L2:	
-	add		Tong_le, rcx
-	jmp		L1
+	add	Tong_le, rcx
+	jmp	L1
 	
 L3: 
 
-	add		Tong_chan, rcx
-	jmp		L1
+	add	Tong_chan, rcx
+	jmp	L1
 
 L4:
- 	mov		r12, Tong_chan
-	mov		r13, offset num_output
+ 	mov	r12, Tong_chan
+	mov	r13, offset num_output
 	push	r12
 	push	r13
 	call	REATOI
-	xor		rbx, rbx
-	mov		rcx, -11
+	xor	rbx, rbx
+	mov	rcx, -11
 	call	GetStdHandle
-	mov		rcx, rax
-	mov		rdx, offset num_output
-	mov		r8, 30
-	mov		r9, offset nByte
-	mov		[rsp+20h], rbx
+	mov	rcx, rax
+	mov	rdx, offset num_output
+	mov	r8, 30
+	mov	r9, offset nByte
+	mov	[rsp+20h], rbx
 	call	WriteFile
 
-	mov		r12, Tong_le
+	mov	r12, Tong_le
 	push	r12
-	mov		r13, offset num_output
+	mov	r13, offset num_output
 	push	r13
 	call	REATOI
 
-	xor		rbx, rbx
-	mov		rcx, -11
+	xor	rbx, rbx
+	mov	rcx, -11
 	call	GetStdHandle
-	mov		rcx, rax
-	mov		rdx, offset num_output
-	mov		r8, 30
-	mov		r9, offset nByte
-	mov		[rsp+20h], rbx
+	mov	rcx, rax
+	mov	rdx, offset num_output
+	mov	r8, 30
+	mov	r9, offset nByte
+	mov	[rsp+20h], rbx
 	call	WriteFile
 
-	mov		ecx, 0
+	mov	ecx, 0
 	call	ExitProcess
 
 
@@ -110,29 +110,29 @@ L4:
 main ENDP
 ATOI PROC
 	push	rbp
-	mov		rbp, rsp
+	mov	rbp, rsp
 	push	rbx
-	mov		rbx, [rbp+16]
-	xor		rsi, rsi								
-	xor		rax, rax
-	mov		rcx, 10
+	mov	rbx, [rbp+16]
+	xor	rsi, rsi								
+	xor	rax, rax
+	mov	rcx, 10
 L1:
-	xor		rdx,rdx
-	mov		dl, byte ptr [rbx+rsi]				
-	cmp		dl, 0Dh								
-	jz		L2
+	xor	rdx,rdx
+	mov	dl, byte ptr [rbx+rsi]				
+	cmp	dl, 0Dh								
+	jz	L2
 	sub 	rdx, 30h							
-	add		rax, rdx							
-	mul		rcx									
-	inc		rsi									
-	jmp		L1
+	add	rax, rdx							
+	mul	rcx									
+	inc	rsi									
+	jmp	L1
 
 L2:
-	xor		rdx, rdx
-	div		rcx
-	pop		rbx
-	pop		rbp
-	ret		8
+	xor	rdx, rdx
+	div	rcx
+	pop	rbx
+	pop	rbp
+	ret	8
 ATOI ENDP
 
 REATOI PROC
@@ -166,7 +166,7 @@ L2:
     jmp     L2
 
 L3:
-	mov		r8w, 0a0dh 
+    mov	    r8w, 0a0dh 
     mov     word ptr [rbx + rsi], r8w
     pop     rbp
     ret     16
