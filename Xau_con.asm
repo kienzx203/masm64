@@ -178,7 +178,6 @@ L2:
 
 L3:
 
-   	mov     WORD PTR [rbx + rsi], 0a0dh
 	pop	rdi
 	pop	rsi
 	pop	rax
