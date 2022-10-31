@@ -12,9 +12,9 @@ extrn   ExitProcess: proc
 .data
 	dem			dq	0
 	len1		dq	0
-	space		db	' ',0
+	space		db	0Ah,0
 	check		dq	1
-	line_feed	db	0Ah, 0Dh, 0
+	line_feed	db	20h, 0
 
 .code
 
@@ -98,6 +98,13 @@ L5:
 	mov	rcx, [rbp - 10h]
 	mov	rdx, offset output
 	mov	r8, 20
+	mov	r9, offset nByte
+	mov	[rsp+20h],r12
+	call	WriteFile
+	
+	mov	rcx, [rbp - 10h]
+	mov	rdx, offset space
+	mov	r8, 2
 	mov	r9, offset nByte
 	mov	[rsp+20h],r12
 	call	WriteFile
