@@ -57,7 +57,7 @@ L1:
 	mov	rax, 0
 	mov	dl, BYTE PTR [rsi + rbx]
 	mov	dh, BYTE PTR [rdi + rax]
-	cmp	dl, 0Dh
+	cmp	dl, 0Ah
 	jz	L5
 	cmp	dl,dh
 	je	L2
