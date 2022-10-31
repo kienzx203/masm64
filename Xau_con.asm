@@ -123,6 +123,13 @@ L6:
 	mov	r9, offset nByte
 	mov	[rsp+20h],r12
 	call	WriteFile
+	
+	mov	rcx, [rbp - 10h]
+	mov	rdx, offset line_feed
+	mov	r8, 2
+	mov	r9, offset nByte
+	mov	[rsp+20h],r12
+	call	WriteFile
 	sub	rbx, len1
 	inc 	rbx
 	jmp	L1
