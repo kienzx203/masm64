@@ -20,6 +20,7 @@ extrn   ExitProcess : proc
 .code
 
 main proc
+
 	mov	rbp, rsp
 	sub	rsp, 48h
 	mov	rcx, -10
@@ -30,27 +31,39 @@ main proc
 	mov	[rbp - 10h], rax		; houtput
 	xor	r12, r12
 
+L1_:
 	mov	rcx, [rbp - 10h]
 	mov	rdx, offset Wnum1
 	mov	r8, sizeof Wnum1
 	mov	r9, offset nByte
-	mov	[rsp + 20h], r12
+	mov		[rsp + 20h], r12
 	call	WriteFile
 
 	mov     rcx, [rbp - 8h]
 	mov     rdx, offset num1
 	mov     r8, 20
 	mov     r9, offset nByte
-	mov	[rsp + 20h], r12
+	mov		[rsp + 20h], r12
 	call    ReadFile
 
-	mov	r13, offset num1
+	mov		r13, offset num1
 	push	r13
 	call	length_of
-	mov	len1, rax
-	mov	BYTE PTR[r13 + rax], 0
-	mov	BYTE PTR[r13 + rax + 1], 0
+	mov		len1, rax
+	mov		BYTE PTR[r13 + rax], 0
+	mov		BYTE PTR[r13 + rax + 1], 0
+	mov		rbx,0
+	mov		rsi, offset num1
+L2_:
+	cmp		byte ptr[rsi + rbx], 30h
+	jb		L1_
+	cmp		byte ptr[rsi + rbx], 39h
+	ja		L1_
+	inc		rbx
+	cmp		byte ptr[rsi + rbx], 0
+	jnz		L2_
 
+L3_:
 	mov	rcx, [rbp - 10h]
 	mov	rdx, offset Wnum2
 	mov	r8, sizeof Wnum2
@@ -71,6 +84,18 @@ main proc
 	mov	len2, rax
 	mov	BYTE PTR[r13 + rax], 0
 	mov	BYTE PTR[r13 + rax + 1], 0
+	xor		rbx, rbx
+	mov		rsi, offset num2
+
+L4_:
+	cmp		byte ptr[rsi + rbx], 30h
+	jb		L3_
+	cmp		byte ptr[rsi + rbx], 39h
+	ja		L3_
+	inc		rbx
+	cmp		byte ptr[rsi + rbx], 0
+	jnz		L4_
+
 	mov	r13, offset num1
 	push	r13
 	call	reverse
